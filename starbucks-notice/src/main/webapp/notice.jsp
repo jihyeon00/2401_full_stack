@@ -308,9 +308,6 @@
 	
 	Exception exception = null;
 	
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	
-	
 	
   try {
 		// 1. JDBC로 Oracle연결
