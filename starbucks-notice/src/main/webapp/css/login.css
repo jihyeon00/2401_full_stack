@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.loginBG{
+	width:100%;
+	height:1000px;
+	background: url("../images/signin_bg.jpg");
+}
+.loginBG .loginBox{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+.loginBG .loginBox h4{
+	padding: 10px;
+}
+
+.loginBG .loginBox .loginForm {
+	
+}
+.loginForm .userId{
+	
+}
+.loginForm .userPw{
+	
+}
