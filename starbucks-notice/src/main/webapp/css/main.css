@@ -645,7 +645,8 @@ header .badges .badge {
 .notice__list .notice__header .notice__no,
 .notice__list .notice__header .notice__title,
 .notice__list .notice__header .notice__regdate,
-.notice__list .notice__header .notice__hit {
+.notice__list .notice__header .notice__hit,
+.notice__list .notice__header .notice__detail_title {
 	text-align: center;
 	font-size: 14px;
 	font-weight: 900;
@@ -664,43 +665,56 @@ header .badges .badge {
 .notice__list .notice__header .notice__hit {
 	width: 12%;
 }
+.notice__list .notice__header .notice__detail_title {
+	width: 80%;
+}
 
-.notice__list .notice__list__itmes {
+
+.notice__list .notice__list__items {
 	
 }
 
-.notice__list .notice__list__itmes ul {
+.notice__list .notice__list__items ul {
 	display: flex;
 	width: 100%;
 }
 
-.notice__list .notice__list__itmes ul li {
+.notice__list .notice__list__items ul li {
 	padding: 12px 0px;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: #e5e5e5;
 }
 
-.notice__list .notice__list__itmes ul li:nth-child(1) {
+.notice__list .notice__list__items ul li:nth-child(1) {
 	width: 10%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-size: 13px;
 }
-.notice__list .notice__list__itmes ul li:nth-child(2) {
+.notice__list .notice__list__items ul li:nth-child(2) {
 	width: 76%;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 }
-.notice__list .notice__list__itmes ul li:nth-child(3) {
+.notice__list .notice__list__items ul li:nth-child(2) a {
+	color: #000;
+}
+
+.notice__list .notice__list__items ul li:nth-child(2) a:hover {
+	text-decoration: underline;
+}
+
+.notice__list .notice__list__items ul li:nth-child(3) {
 	width: 12%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-size: 13px;
 }
-.notice__list .notice__list__itmes ul li:nth-child(4) {
+.notice__list .notice__list__items ul li:nth-child(4) {
 	width: 12%;
 	display: flex;
 	align-items: center;

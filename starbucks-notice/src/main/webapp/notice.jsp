@@ -294,7 +294,7 @@
 	  		<div class="notice__regdate">조회수</div>
 	  		<div class="notice__hit">날짜</div>
 	  	</div>
-	  	<div class="notice__list__itmes">
+	  	<div class="notice__list__items">
 <%
 	String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
   String USER = "jsp";
@@ -323,7 +323,7 @@
 %>
 <ul>
 	<li><%= rs.getInt("NUM") %></li>
-	<li><%= rs.getString("SUBJECT") %></li>
+	<li><a href="./notice_detail.jsp?num=<%= rs.getInt("NUM") %>"><%= rs.getString("SUBJECT") %></a></li>
 	<li><%= rs.getInt("HIT") %></li>
 	<li><%= rs.getString("REGDATE").substring(0, 10) %></li>
 </ul>	
