@@ -1,5 +1,3 @@
-<%@page import="java.sql.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ page import = "java.sql.DriverManager" %>
@@ -308,15 +306,18 @@
 	
 	Exception exception = null;
 	
-	
   try {
+		// 0.
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+	
 		// 1. JDBC로 Oracle연결
 	  conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-	  System.out.println("오라클 접속 성공");
+	  // System.out.println("오라클 접속 성공");
 	  
 		// 2. BO_FREE 테이블에서 SQL로 데이터 가져오기
 	 	stmt = conn.createStatement();	// 2-1. Statement 생성
-	 	rs = stmt.executeQuery("SELECT NUM, SUBJECT, HIT, REGDATE FROM BO_FREE"); // 2-2. SQL 쿼리 실행
+	 	rs = stmt.executeQuery("SELECT NUM, SUBJECT, HIT, REGDATE FROM BO_FREE ORDER BY NUM DESC"); // 2-2. SQL 쿼리 실행
+		
 	 	// 3. rs로 데이터 가져온 걸 웹에 보여주기 -> 쿼리 실행 결과 출력
 	 	while(rs.next()) {
 %>
@@ -324,12 +325,16 @@
 	<li><%= rs.getInt("NUM") %></li>
 	<li><%= rs.getString("SUBJECT") %></li>
 	<li><%= rs.getInt("HIT") %></li>
-	<li><%= rs.getString("REGDATE").substring(0,10)%></li>
+	<li><%= rs.getString("REGDATE").substring(0, 10) %></li>
 </ul>	
 <% 		 		
 	 	}
   } catch(Exception e) {
 	  System.out.println("오라클 접속 오류:" + e);
+  } finally {
+	  if (rs != null) try { rs.close(); } catch (SQLException ex) {}
+	  if (stmt != null) try { stmt.close(); } catch (SQLException ex) {}
+	  if (conn != null) try { conn.close(); } catch (SQLException ex) {}
   }
 %>
 	  	</div>

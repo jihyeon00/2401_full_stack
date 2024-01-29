@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.sql.DriverManager" %>
-<%@ page import = "java.sql.Connection" %>
-<%@ page import = "java.sql.Statement" %>
-<%@ page import = "java.sql.ResultSet" %>
-<%@ page import = "java.lang.Exception, java.sql.SQLException" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -44,7 +38,7 @@
   <header>
     <div class="inner">
       <!-- 로고 이미지 부분 -->
-      <a href="/" class="logo">
+      <a href="./index.jsp" class="logo">
         <img src="./images/starbucks_logo.png" alt="starbucks_logo" />
       </a>
 
@@ -303,45 +297,7 @@
         <div class="inner__left">
           <h2>공지사항</h2>
           <div class="swiper-container">
-            <div class="swiper-wrapper">
             
-<%
-	String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
-  String USER = "jsp";
-  String PASSWORD = "123456";
-	
-  Connection conn = null; //디비 접속 성공시 접속 정보 저장
-	Statement stmt = null; //쿼리를 실행하기 객체 정보
-	ResultSet rs = null;
-	
-	Exception exception = null;
-	
-  try {
-		// 1. JDBC로 Oracle연결
-	  conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-	  System.out.println("오라클 접속 성공");
-	  
-		// 2. BO_FREE 테이블에서 SQL로 데이터 가져오기
-	 	stmt = conn.createStatement();	// 2-1. Statement 생성
-	 	rs = stmt.executeQuery("SELECT ROWNUM, SUBJECT FROM BO_FREE WHERE ROWNUM<=3"); // 2-2. SQL 쿼리 실행
-		
-	 	// 3. rs로 데이터 가져온 걸 웹에 보여주기 -> 쿼리 실행 결과 출력
-	 	while(rs.next()) {
-%>
- 	<div class="swiper-slide">
-		<ul>
-			<li><a href="./notice.jsp"><%= rs.getString("SUBJECT") %></a></li>
-		</ul>
-	</div>
-<% 		 		
-	 	}
-	 	
-  } catch(Exception e) {
-	  System.out.println("오라클 접속 오류:" + e);
-  }
-  
-%>
-            </div>
           </div>
           <a href="./notice.jsp" class="notice-line__more">
             <span class="material-symbols-outlined">

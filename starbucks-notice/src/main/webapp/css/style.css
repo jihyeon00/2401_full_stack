@@ -81,7 +81,7 @@ body {
     border: none;
 }
 
-.card-body .check ,.delete {
+.card-body .check {
     width: 5%;
 }
 

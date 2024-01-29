@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/jquery-3.7.1.min.js"></script>
-    <title>글쓰기</title>
+    <title>공지사항 쓰기</title>
 </head>
 <body>
     <div class="card">
@@ -45,19 +45,19 @@
     			
     			return;
     		}
-    		if (!$('#korname').val()>length>10) {	// 이름 관련 dom
-    			alert('이름을 10자 이내로 입력해 주세요.');	// 이름 입력하라고 팝업 뜸.
+    		if ($('#korname').val().length > 5) { // 이름 관련 dom	
+    			alert('이름을 5자 이내로 입력해 주세요.');	// 이름 5자 이내로 입력하라고 팝업 뜸.
     			$('#korname').focus();		// 이름 입력 칸으로 포커스 이동
     			
     			return;
     		}
-    		if (!$('#title').val()||) {	// 제목 관련 dom
+    		if (!$('#title').val()) {	// 제목 관련 dom
     			alert('제목을 입력하세요.');	// 제목 입력하라고 팝업 뜸.
     			$('#title').focus();		// 제목 입력 칸으로 포커스 이동
     			
     			return;
     		}
-    		if (!$('#content').val()||) {	// 내용 관련 dom
+    		if (!$('#content').val()) {	// 내용 관련 dom
     			alert('내용을 입력하세요.');	// 내용 입력하라고 팝업 뜸.
     			$('#content').focus();		// 내용 입력 칸으로 포커스 이동
     			
