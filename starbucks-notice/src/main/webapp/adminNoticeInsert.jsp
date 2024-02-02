@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.lang.Exception" %>    
 <%@ page import="java.sql.*" %>
+<%@ page import="com.oreilly.servlet.*" %>
+<%@ page import="com.oreilly.servlet.multipart.*" %>
 <%
 	// 한글 처리
 	request.setCharacterEncoding("UTF-8");
 	
-	String korname = request.getParameter("korname");
-	// System.out.println("korname: " + korname);
-	String title = request.getParameter("title");
-	String content = request.getParameter("content");
+	String korname = "";
+	String title = "";
+	String content = "";
 	
 	String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
   String USER = "jsp";
@@ -20,7 +20,23 @@
 	
 	Exception exception = null;
 	
+	String savePath = "D:\\2401_full_stack\\starbucks-notice\\src\\main\\webapp\\upload-files";	
+	
   try {
+	  MultipartRequest multi = new MultipartRequest(
+		  request,
+		  savePath,			// 실제 파일을 저장할 서버의 디렉토리
+		  1024 * 1024 * 5,  // 업로드 제한 파일 크기(단위 byte) -> 5MB
+		  "utf-8",
+		  new DefaultFileRenamePolicy()
+	  );
+	  korname = multi.getParameter("korname");
+	  title = multi.getParameter("title");
+	  content = multi.getParameter("content");
+	  
+	  String filename1 = multi.getFilesystemName("filecontent1");	// 첫번째 첨부파일 이름
+	  String filename2 = multi.getFilesystemName("filecontent2");	// 두번째 첨부파일 이름
+	  
 		// 0.
 	  Class.forName("oracle.jdbc.driver.OracleDriver");
 	
@@ -28,11 +44,13 @@
 	  conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
 	  
 		// 2. BO_FREE 테이블에 화면 폼으로부터 가져온 데이터 입력
-		String insertQuery = "INSERT INTO BO_FREE(NAME, SUBJECT, CONTENT) VALUES (?,?,?)";
+		String insertQuery = "INSERT INTO BO_FREE(NAME, SUBJECT, CONTENT, File1_path, File2_path) VALUES (?,?,?,?,?)";
 		pstmt = conn.prepareStatement(insertQuery);
 		pstmt.setString(1, korname);
 		pstmt.setString(2, title);
 		pstmt.setString(3, content);
+		pstmt.setString(4, filename1);
+		pstmt.setString(5, filename2);
 		
 		pstmt.executeUpdate();
   } catch(Exception e) {
