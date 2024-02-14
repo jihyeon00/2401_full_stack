@@ -44,7 +44,7 @@
 	  conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
 	  
 		// 2. BO_FREE 테이블에 화면 폼으로부터 가져온 데이터 입력
-		String insertQuery = "INSERT INTO BO_FREE(NAME, SUBJECT, CONTENT, File1_path, File2_path) VALUES (?,?,?,?,?)";
+		String insertQuery = "INSERT INTO BO_FREE(NAME, SUBJECT, CONTENT, FILE1_PATH, FILE2_PATH) VALUES (?,?,?,?,?)";
 		pstmt = conn.prepareStatement(insertQuery);
 		pstmt.setString(1, korname);
 		pstmt.setString(2, title);

@@ -17,6 +17,12 @@
 </head>
 <body>
 <%
+	// request, session, application -> 웹서버 생명주기 scope
+	session.setAttribute("name", "홍길동");
+	session.setAttribute("hp", "010-1234-1234");
+	
+	//application.setAttribute("name-id", "홍길동");
+	
 	String searchText = request.getParameter("search");
 	if (searchText == null) {
 		searchText = "";
